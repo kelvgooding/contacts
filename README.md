@@ -1,8 +1,18 @@
 # Contacts
 
-WOTM (What's On The Menu) is an application which help choose meals automatically and lists the required ingredients. This then generates a shopping list for you to take to your local supermarket. The idea behind this application is to make easier and more convient when decided what to cook, and what igredients are required. This also has a scratchpad feature to add items or ingredients during the week which are also needed from your shop. All data is stored in SQLite3 Database.
+Contacts is an application which is used to store contact details of Family, Friends, Neighbours etc. This data is stored in an SQLite3 database, which is then called when clicking on one of the filter buttons at the bottom of the application.
 
 ## Application Overview
+
+This is the main any only window for Contacts. This consists of a treeview table, with five columns named: Name, Mobile, Mailbox, Postcode and Birthday. 
+
+* The Name column combines the forename and surname of an indivudal.
+* The Mobile column stores the indivual's contact number - using the area code at the start, and is split into sections for ease of reading.
+* The Mailbox column stores the email address for the individual.
+* The Postcode column will store the Postcode for the individual.
+* The Birthday column will store the Birthday for the individual. This is in a format of DD/MM, excluding the year.
+
+By default, when the application is launched, this will show all contacts in the database. Each button is a filter, and this will change what is viewed in the treeview table, depending on what group was entertered for the individual.
 
 ![Screenshot 2021-12-08 16 43 17](https://user-images.githubusercontent.com/82043281/145309431-7f9469d0-8142-4805-bb6d-04c99e0fb547.png)
 
