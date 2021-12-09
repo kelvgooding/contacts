@@ -2,7 +2,7 @@
 
 Contacts is an application which is used to store contact details of Family, Friends, Neighbours etc. This data is stored in an SQLite3 database, which is then called when clicking on one of the filter buttons at the bottom of the application.
 
-The information shown in the examples before is not real data.
+The contact information shown in the examples below is not real data.
 
 ## Application Overview
 
