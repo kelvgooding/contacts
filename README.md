@@ -14,6 +14,8 @@ This is the main any only window for Contacts. This consists of a treeview table
 
 By default, when the application is launched, this will show all contacts in the database. Each button is a filter, and this will change what is viewed in the treeview table, depending on what group was entertered for the individual.
 
+The buttons will change colour when the mouse is hovered over this. This feature was added to make it easier for the user to identify which filter button is about to be clicked.
+
 ![Screenshot 2021-12-08 16 43 17](https://user-images.githubusercontent.com/82043281/145309431-7f9469d0-8142-4805-bb6d-04c99e0fb547.png)
 
 ## Unfiltered - All
