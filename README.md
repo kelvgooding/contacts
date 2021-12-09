@@ -2,6 +2,8 @@
 
 Contacts is an application which is used to store contact details of Family, Friends, Neighbours etc. This data is stored in an SQLite3 database, which is then called when clicking on one of the filter buttons at the bottom of the application.
 
+The information shown in the examples before is not real data.
+
 ## Application Overview
 
 This is the main any only window for Contacts. This consists of a treeview table, with five columns named: Name, Mobile, Mailbox, Postcode and Birthday. 
