@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="author" content="Kelv Gooding">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="">
+        <link rel="stylesheet" href="../static/styles.css">
+        <title>New Contact | Contacts</title>
+    </head>
+    <body>
+        <header>
+
+            <a href="{{ url_for('index') }}">Home</a> | <a href="{{ url_for('new_contact') }}">New Contact</a> | <a href="{{ url_for('delete_contact') }}">Delete Contact</a>
+            <hr>
+
+        </header>
+        <main>
+
+            <form method="POST">
+
+                First Name<br>
+                <input type="text" name="first_name" required><br>
+                Last Name<br>
+                <input type="text" name="last_name" required><br>
+                Contact Number<br>
+                <input type="text" name="area_code" maxlength="3" placeholder="+44" style="width: 30px">
+                <input type="text" name="number" required style="width: 100px"><br>
+                Mailbox<br>
+                <input type="email" name="mailbox" required><br>
+                Address<br>
+                <input type="text" name="address" required><br>
+                City/Town<br>
+                <input type="text" name="town" required><br>
+                Postcode<br>
+                <input type="text" maxlength="10" name="postcode" required><br>
+                Birthday<br>
+                <input type="date" maxlength="10" name="birthday" style="width: 140px" required><br>
+                Gender<br>
+                <select name="gender" style="width: 150px" required>
+                    <option value="-">-</option>
+                    <option value="M">M</option>
+                    <option value="F">F</option>
+                </select>
+                <br>
+                Group<br>
+                <select name="group" required style="width: 150px">
+                    <option value="-">-</option>
+                    <option value="Family">Family</option>
+                    <option value="Friends">Friends</option>
+                    <option value="Neighbours">Neighbours</option>
+                    <option value="Work">Work</option>
+                    <option value="Other">Other</option>
+                    <option value="Archived">Archived</option>
+                </select>
+                <br><br>
+                <button type="submit">Add Contact</button>
+
+            </form>
+        
+        </main>
+        <footer>
+        </footer>
+    </body>
+</html>
