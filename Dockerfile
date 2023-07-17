@@ -1,6 +1,10 @@
-FROM python:3-alpine3.15
+FROM ubuntu:20.04
 WORKDIR /app
 COPY . /app
-RUN pip install -r requirements.txt
-EXPOSE 3000
-CMD python ./app.py
+RUN apt-get update
+RUN apt-get install -y python3
+RUN apt-get install -y python3-pip
+RUN apt-get install -y python3-mysql.connector
+RUN pip3 install -r requirements.txt
+EXPOSE 3004
+CMD python3 ./app.py
