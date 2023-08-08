@@ -1,15 +1,21 @@
 """
 Author: Kelvin Gooding
 Created: 2022-06-29
-Updated: 2023-07-17
-Version: 1.1
+Updated: 2023-08-08
+Version: 1.2
 """
 
 #!/usr/bin/env python3
 
-from flask import Flask, render_template, request, flash
+# Modules
+
+from flask import Flask, render_template, request
 import mysql.connector
+
+# Custom Modules
+
 import auth
+import imp_exp
 
 # MySQL Variables
 
@@ -32,7 +38,7 @@ def index():
 
     # Headers should reflect the column names in the contacts table.
 
-    headings = ['First Name', 'Last Name', 'Contact Number', 'Mailbox', 'Address', 'City/Town', 'Postcode', 'Birthday', 'Gender', 'Group']
+    headings = ['First Name', 'Last Name', 'Contact Number', 'Mailbox', 'Address', 'City/Town', 'Postcode', 'Birthday', 'Gender', 'Group', 'Added On']
     
     # Select all data from the contacts table.
     
@@ -48,13 +54,14 @@ def index():
 
     return render_template('index.html', headings=headings, contacts_data=contacts_data)
 
+
 @app.route("/new_contact", methods=["POST", "GET"])
 def new_contact():
 
     # Values will be taken from each input box and pushed into the contacts table.
 
     if request.method == "POST":
-        c.execute(f"INSERT INTO contacts VALUES ('{request.form.get('first_name')}', '{request.form.get('last_name')}', '{request.form.get('area_code')} {request.form.get('number')}', '{request.form.get('mailbox')}', '{request.form.get('address')}', '{request.form.get('town')}', '{request.form.get('postcode')}', '{request.form.get('birthday')}', '{request.form.get('gender')}', '{request.form.get('group')}')")
+        c.execute(f"INSERT INTO contacts VALUES ('{request.form.get('first_name')}', '{request.form.get('last_name')}', '{request.form.get('area_code')} {request.form.get('number')}', '{request.form.get('mailbox')}', '{request.form.get('address')}', '{request.form.get('town')}', '{request.form.get('postcode')}', '{request.form.get('birthday')}', '{request.form.get('gender')}', '{request.form.get('group')}', CURRENT_TIMESTAMP)")
         conn.commit()
 
     return render_template('new_contact.html')
@@ -75,6 +82,17 @@ def delete_contact():
 
     return render_template('delete_contact.html', all_contacts=all_contacts)
 
+@app.route("/import_export", methods=["POST", "GET"])
+def import_export():
+        
+    if 'export_btn' in request.form and request.method == "POST":
+        imp_exp.export_data()
+
+    if 'import_btn' in request.form and request.method == "POST":
+        imp_exp.import_data()
+
+    return render_template('import_export.html')
+
 if __name__ == "__main__":
     app.debug = True
-    app.run(host="0.0.0.0", port=3003)
+    app.run(host="0.0.0.0", port=3013)

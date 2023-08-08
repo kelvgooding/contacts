@@ -8,5 +8,6 @@ town VARCHAR(255),
 postcode VARCHAR(10),
 birthday VARCHAR(10),
 gender VARCHAR(1),
-grp VARCHAR(255) 
+grp VARCHAR(255),
+added_on VARCHAR(255)
 );
