@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="image/x-icon" href="../static/img/logo.png">
         <link rel="stylesheet" href="../static/css/styles.css">
-        <title>Delete Contact | Contacts</title>
+        <title>Import / Export | Contacts</title>
     </head>
     <body>
         <header>
@@ -19,22 +19,12 @@
         </header>
         <main>
 
-            <form method="POST" onSubmit="return confirm('Do you want to submit?') ">
-
-                Select a contact:
-                <br>
-
-                <select name="dropdownbox" style="width: 150px">
-                    <option value="-">-</option>
-                    {% for i in all_contacts %}
-                        <option value={{i.0}}>{{ i.0 }} {{ i.1 }}</option>
-                    {% endfor %}
-
-                </select>
+            <form method="POST">
 
                 <br><br>
 
-                <button type="submit">Delete Contact</button>
+                <button type="submit" name="export_btn">Export</button>
+                <button type="submit" name="import_btn">Import</button>
 
             </form>
         

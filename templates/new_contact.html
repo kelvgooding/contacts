@@ -3,14 +3,17 @@
     <head>
         <meta name="author" content="Kelv Gooding">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="image/x-icon" href="">
+        <link rel="icon" type="image/x-icon" href="../static/img/logo.png">
         <link rel="stylesheet" href="../static/css/styles.css">
         <title>New Contact | Contacts</title>
     </head>
     <body>
         <header>
 
-            <a href="{{ url_for('index') }}">Home</a> | <a href="{{ url_for('new_contact') }}">New Contact</a> | <a href="{{ url_for('delete_contact') }}">Delete Contact</a>
+            <a href="{{ url_for('index') }}">Home</a> |
+            <a href="{{ url_for('new_contact') }}">New Contact</a> |
+            <a href="{{ url_for('delete_contact') }}">Delete Contact</a> |
+            <a href="{{ url_for('import_export') }}">Import / Export</a>
             <hr>
 
         </header>
@@ -49,6 +52,7 @@
                     <option value="Friends">Friends</option>
                     <option value="Neighbours">Neighbours</option>
                     <option value="Work">Work</option>
+                    <option value="Company">Company</option>
                     <option value="Other">Other</option>
                     <option value="Archived">Archived</option>
                 </select>
