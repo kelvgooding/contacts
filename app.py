@@ -1,8 +1,8 @@
 """
 Author: Kelvin Gooding
 Created: 2022-06-29
-Updated: 2023-08-08
-Version: 1.2
+Updated: 2023-10-20
+Version: 1.4
 """
 
 #!/usr/bin/env python3
@@ -11,11 +11,8 @@ Version: 1.2
 
 from flask import Flask, render_template, request
 import mysql.connector
-
-# Custom Modules
-
-import auth
-import imp_exp
+from modules import auth
+from modules import imp_exp
 
 # MySQL Variables
 

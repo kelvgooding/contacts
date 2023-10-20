@@ -14,7 +14,7 @@ import csv
 from datetime import datetime
 import os
 import platform
-import auth
+from . import auth
 
 # Variables
 
