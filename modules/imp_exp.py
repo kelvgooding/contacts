@@ -9,29 +9,24 @@ Version: 1.1
 
 # Modules
 
-import mysql.connector
+import sqlite3
 import csv
 from datetime import datetime
 import os
 import platform
-from . import auth
 
 # Variables
 
 username = os.environ.get('USER')
+base_path = f'/home/{username}/scripts/python/apps/contacts'
+db_filename = 'contacts.db'
+db_path = os.path.join(base_path, db_filename)
 exp_filename = f'contacts_export_{datetime.today().strftime("%Y%m%d_%H%M%S")}.csv'
 imp_filename = 'contacts_import.csv'
 
-# MySQL Variables
+# Sqlite3 Variables
 
-conn = mysql.connector.connect(
-    host=auth.mysql_db_auth["host"],
-    user=auth.mysql_db_auth["user"],
-    password=auth.mysql_db_auth["password"],
-    database=auth.mysql_db_auth["database"],
-    port=auth.mysql_db_auth["port"]
-)
-
+conn = sqlite3.connect(db_path, check_same_thread=False)
 c = conn.cursor()
 
 def export_data():
@@ -48,7 +43,7 @@ def export_data():
     if platform.system() == 'Windows':
         file = open(f'export/{exp_filename}', 'w', newline="")
     elif platform.system() == 'Linux':
-        file = open(f'/home/{username}/apps/contacts/export/{exp_filename}', 'w', newline="")
+        file = open(f'{base_path}/export/{exp_filename}', 'w', newline="")
 
     writer = csv.writer(file)
     writer.writerow(headings)
@@ -68,10 +63,10 @@ def import_data():
                 conn.commit()
         os.remove(f'import\{imp_filename}')
     elif platform.system() == 'Linux':
-        with open(f'/home/{username}/apps/contacts/import/{imp_filename}') as file:
+        with open(f'{base_path}/import/{imp_filename}') as file:
             reader_obj = csv.reader(file)
             next(reader_obj)
             for row in reader_obj:
                 c.execute(f'INSERT INTO contacts VALUES ("{row[0]}", "{row[1]}", "{row[2]}", "{row[3]}", "{row[4]}", "{row[5]}", "{row[6]}", "{row[7]}", "{row[8]}", "{row[9]}", CURRENT_TIMESTAMP)')
                 conn.commit()
-        os.remove(f'/home/{username}/apps/contacts/import/{imp_filename}')
+        os.remove(f'{base_path}/import/{imp_filename}')
