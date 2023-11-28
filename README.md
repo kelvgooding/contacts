@@ -15,35 +15,23 @@ This application requires user credentials. This file is representative of any p
 Within the main script, auth.py will be referenced, and the variables will be found in this file.
 The auth.py file will be left blank by default. Therefore, this information must be entered before using this application.<br>
 
-### Database Credentials
-
-```
-mysql_db_auth = {
-    "user": "",
-    "password": "",
-    "host": "",
-    "port": "",
-    "database": "",
-}
-```
-
 ### Dependencies
 #### Software:
 •	Python
 
 #### Files:
-•	auth.py
-<br>
 •	imp_exp.py
+<br>
+•	db_check.py
 
 #### Modules:
 •	from flask import Flask, render_template, request
 <br>
-•	mysql.connector
+•	from modules import db_check
 <br>
-•	auth
+•	from modules import imp_exp
 <br>
-•	imp_exp
+•	import os
 
 ## Stakeholders
 PM: Kelvin Gooding | kelv.gooding@outlook.com

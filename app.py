@@ -1,8 +1,8 @@
 """
 Author: Kelvin Gooding
 Created: 2022-06-29
-Updated: 2023-10-20
-Version: 1.4
+Updated: 2023-11-28
+Version: 1.5
 """
 
 #!/usr/bin/env python3
@@ -10,20 +10,21 @@ Version: 1.4
 # Modules
 
 from flask import Flask, render_template, request
-import mysql.connector
-from modules import auth
+from modules import db_check
 from modules import imp_exp
+import os
 
-# MySQL Variables
+# General Variables
 
-conn = mysql.connector.connect(
-    host=auth.mysql_db_auth["host"],
-    user=auth.mysql_db_auth["user"],
-    password=auth.mysql_db_auth["password"],
-    database=auth.mysql_db_auth["database"],
-    port=auth.mysql_db_auth["port"]
-)
+username = os.environ.get('USER')
+base_path = f'/home/{username}/scripts/python/apps/contacts/build'
+db_filename = 'contacts.db'
+sql_script = f'{base_path}/scripts/sql/table_contacts.sql'
 
+# SQLite3 Variables
+
+db_check.check_db(f'{base_path}', f'{db_filename}', f'{sql_script}')
+conn = db_check.sqlite3.connect(f'{db_filename}', check_same_thread=False)
 c = conn.cursor()
 
 # Flask Variables
@@ -50,7 +51,6 @@ def index():
         return render_template('index.html', headings=headings, contacts_data=contacts_data)
 
     return render_template('index.html', headings=headings, contacts_data=contacts_data)
-
 
 @app.route("/new_contact", methods=["POST", "GET"])
 def new_contact():
