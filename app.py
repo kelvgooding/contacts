@@ -17,7 +17,7 @@ import os
 # General Variables
 
 username = os.environ.get('USER')
-base_path = f'/home/{username}/scripts/python/apps/contacts'
+base_path = f'/home/{username}/apps/contacts'
 db_filename = 'contacts.db'
 sql_script = f'{base_path}/scripts/sql/table_contacts.sql'
 
