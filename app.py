@@ -16,7 +16,7 @@ import os
 
 # General Variables
 
-base_path = '/home/pi/apps/contacts'
+base_path = f'/home/{os.getlogin()}/apps/contacts'
 db_filename = 'contacts.db'
 db_path = os.path.join(base_path, db_filename)
 sql_script = f'{base_path}/scripts/sql/table_contacts.sql'
