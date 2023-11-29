@@ -16,15 +16,15 @@ import os
 
 # General Variables
 
-username = os.environ.get('USER')
-base_path = f'/home/{username}/apps/contacts'
+base_path = '/home/pi/apps/contacts'
 db_filename = 'contacts.db'
+db_path = os.path.join(base_path, db_filename)
 sql_script = f'{base_path}/scripts/sql/table_contacts.sql'
 
 # SQLite3 Variables
 
 db_check.check_db(f'{base_path}', f'{db_filename}', f'{sql_script}')
-conn = db_check.sqlite3.connect(f'{db_filename}', check_same_thread=False)
+conn = db_check.sqlite3.connect(os.path.join(base_path, db_filename), check_same_thread=False)
 c = conn.cursor()
 
 # Flask Variables

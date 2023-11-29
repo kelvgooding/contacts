@@ -17,8 +17,7 @@ import platform
 
 # Variables
 
-username = os.environ.get('USER')
-base_path = f'/home/{username}/apps/contacts'
+base_path = f'/home/pi/apps/contacts'
 db_filename = 'contacts.db'
 db_path = os.path.join(base_path, db_filename)
 exp_filename = f'contacts_export_{datetime.today().strftime("%Y%m%d_%H%M%S")}.csv'
