@@ -1,8 +1,8 @@
 """
 Author: Kelvin Gooding
 Created: 2022-06-29
-Updated: 2023-11-28
-Version: 1.5
+Updated: 2023-12-02
+Version: 1.7
 """
 
 #!/usr/bin/env python3
@@ -19,7 +19,7 @@ import os
 base_path = f'/home/{os.getlogin()}/apps/contacts'
 db_filename = 'contacts.db'
 db_path = os.path.join(base_path, db_filename)
-sql_script = f'{base_path}/scripts/sql/table_contacts.sql'
+sql_script = f'{base_path}/scripts/sql/create_tables.sql'
 
 # SQLite3 Variables
 

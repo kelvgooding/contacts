@@ -5,26 +5,23 @@ Repository: https://github.com/kelvgooding/contacts
 
 Contacts is a web app, which is used to store contact details of Family, Friends, Neighbours etc. The data is stored in an mysql database. This application has been dockerised, and the image can be used for this application.
 
-## Prerequisites
-### System Requirements
+## System Requirements
 •	Linux
 <br>
 
-### auth.py
-This application requires user credentials. This file is representative of any personal details which you would like to keep private.<br>
-Within the main script, auth.py will be referenced, and the variables will be found in this file.
-The auth.py file will be left blank by default. Therefore, this information must be entered before using this application.<br>
+## Prerequisites
 
-### Dependencies
-#### Software:
+Run the following command to install the requirements.txt file
+
+```
+pip install requirements.txt
+```
+
+## Dependencies
+### Software:
 •	Python
 
-#### Files:
-•	imp_exp.py
-<br>
-•	db_check.py
-
-#### Modules:
+### Modules:
 •	from flask import Flask, render_template, request
 <br>
 •	from modules import db_check
