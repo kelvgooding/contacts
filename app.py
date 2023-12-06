@@ -1,7 +1,7 @@
 """
 Author: Kelvin Gooding
 Created: 2022-06-29
-Updated: 2023-12-02
+Updated: 2023-12-06
 Version: 1.7
 """
 
@@ -12,6 +12,7 @@ Version: 1.7
 from flask import Flask, render_template, request
 from modules import db_check
 from modules import imp_exp
+from modules import dir_check
 import os
 
 # General Variables
@@ -83,10 +84,11 @@ def delete_contact():
 def import_export():
         
     if 'export_btn' in request.form and request.method == "POST":
+        dir_check.check_dir(base_path, 'export')
         imp_exp.export_data()
 
     if 'import_btn' in request.form and request.method == "POST":
-        imp_exp.import_data()
+        imp_exp.import_data(base_path, 'import')
 
     return render_template('import_export.html')
 
