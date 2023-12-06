@@ -5,22 +5,30 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="image/x-icon" href="../static/img/logo.png">
         <link rel="stylesheet" href="../static/css/styles.css">
+        <script src="../static/javascript/searchbar_filter.js"></script>
         <title>Home | Contacts</title>
     </head>
     <body>
+
         <header>
 
             <a href="{{ url_for('index') }}">Home</a> |
             <a href="{{ url_for('new_contact') }}">New Contact</a> |
             <a href="{{ url_for('delete_contact') }}">Delete Contact</a> |
-            <a href="{{ url_for('import_export') }}">Import / Export</a>
+            <a href="{{ url_for('import_export') }}">Export & Import</a>
             <hr>
             
         </header>
         <main>
 
-            Filter
-            
+            <h1>CONTACTS</h1>
+
+            <h2>SEARCH</h2>
+
+            <input id="searchbar" onkeyup="search_participants()" type="text" name="search" class="picks-searchbar">
+
+            <h2>FILTER</h2>
+
             <form method="POST">
             
             <select name="dropdownbox" style="width: 150px">
@@ -36,29 +44,58 @@
 
             <br><br>
 
-            <button type="submit">Apply Filter</button>
+            <button type="submit">Apply Filter</button><br><br>
+            
+            {{ contacts_count.0.0 }} contacts have been filtered.
 
             <br>
             <br>
-
-            <table>
-                <tr>
-                {% for header in headings %}
-                    <th> {{ header }} </th>
-                {% endfor %}
-                </tr>
-                {% for row in contacts_data %}
-                <tr>
-                    {% for cell in row %}
-                    <td> {{ cell }} </td>
-                    {% endfor %}
-                </tr>
-                {% endfor %}
-            </table>
+            <div style="overflow-x:auto;">
+                <table id="myTable">
+                    <thead>
+                        <tr>
+                            {% for header in headings %}
+                                <th> {{ header }} </th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in contacts_data %}
+                            <tr class="participant-row">
+                                {% for cell in row %}
+                                    <td> {{ cell }} </td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </form>
 
         </main>
-        <footer>
+        <footer>           
+
+            <!-- Social Media Links -->
+
+            <br><hr><br>
+            
+            <section>
+                <a href="http://192.168.1.163:3000" target="_blank"><img src="../static/img/web-logo.png" class="img-logo-social"/></a>
+                <a href="https://instagram.com/kelvgooding" target="_blank"><img src="../static/img/instagram-logo.png" class="img-logo-social"/></a>
+                <a href="https://www.linkedin.com/in/kelvingooding/" target="_blank"><img src="../static/img/linkedin-logo.png" class="img-logo-social"/></a>
+                <a href="https://github.com/kelvgooding/" target="_blank"><img src="../static/img/github-logo.png" class="img-logo-social"/></a>
+                <a href="mailto:livelifeautomate@gmail.com?subject=Contacts - Feedback/Request"><img src="../static/img/mail-logo.png" class="img-logo-social"/></a>
+            </section>
+
+            <br>
+
+            <!-- Copyright -->
+            <section>
+                Created by Kelv Gooding<br>
+                © 2023 Live.Life.Automate! All rights reserved.<br>
+            </section>
+
         </footer>
     </body>
+
 </html>
