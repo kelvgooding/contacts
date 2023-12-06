@@ -1,17 +1,18 @@
 """
 Author: Kelvin Gooding
 Created: 2022-06-29
-Updated: 2023-12-02
+Updated: 2023-12-06
 Version: 1.7
 """
 
-#!/usr/bin/env python3
+#!/usr/bin/python3
 
 # Modules
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash
 from modules import db_check
 from modules import imp_exp
+from modules import dir_check
 import os
 
 # General Variables
@@ -30,6 +31,9 @@ c = conn.cursor()
 # Flask Variables
 
 app = Flask(__name__)
+app.secret_key = "password"
+
+# Routes
 
 @app.route("/", methods=["POST", "GET"])
 def index():
@@ -43,14 +47,19 @@ def index():
     c.execute('SELECT * FROM contacts WHERE GRP NOT LIKE "ARCHIVED" ORDER BY FIRST_NAME ASC')
     contacts_data = c.fetchall()
 
+    c.execute('SELECT COUNT(*) FROM contacts WHERE GRP NOT LIKE "ARCHIVED" ORDER BY FIRST_NAME ASC')
+    contacts_count = c.fetchall()
+
     # Select all data from the contact table using the filter dropdown value in the WHERE statement.
 
     if request.method == "POST":
         c.execute(f'SELECT * FROM contacts WHERE GRP=("{(request.form.get("dropdownbox"))}") ORDER BY FIRST_NAME ASC;')
         contacts_data = c.fetchall()
-        return render_template('index.html', headings=headings, contacts_data=contacts_data)
+        c.execute(f'SELECT COUNT(*) FROM contacts WHERE GRP=("{(request.form.get("dropdownbox"))}") ORDER BY FIRST_NAME ASC;')
+        contacts_count = c.fetchall()
+        return render_template('index.html', headings=headings, contacts_data=contacts_data, contacts_count=contacts_count)
 
-    return render_template('index.html', headings=headings, contacts_data=contacts_data)
+    return render_template('index.html', headings=headings, contacts_data=contacts_data, contacts_count=contacts_count)
 
 @app.route("/new_contact", methods=["POST", "GET"])
 def new_contact():
@@ -83,10 +92,13 @@ def delete_contact():
 def import_export():
         
     if 'export_btn' in request.form and request.method == "POST":
+        dir_check.check_dir(base_path, 'export')
         imp_exp.export_data()
+        flash('Export has been completed successfully!')
 
     if 'import_btn' in request.form and request.method == "POST":
-        imp_exp.import_data()
+        imp_exp.import_data(base_path, 'import')
+        flash('Import has been completed successfully!')
 
     return render_template('import_export.html')
 

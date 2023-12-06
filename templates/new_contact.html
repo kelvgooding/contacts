@@ -13,21 +13,23 @@
             <a href="{{ url_for('index') }}">Home</a> |
             <a href="{{ url_for('new_contact') }}">New Contact</a> |
             <a href="{{ url_for('delete_contact') }}">Delete Contact</a> |
-            <a href="{{ url_for('import_export') }}">Import / Export</a>
+            <a href="{{ url_for('import_export') }}">Export & Import</a>
             <hr>
 
         </header>
         <main>
 
-            <form method="POST">
+            <h1>NEW CONTACT</h1>
+
+            <form method="POST" onSubmit="return confirm('Do you want to submit?') ">
 
                 First Name<br>
                 <input type="text" name="first_name" required><br>
                 Last Name<br>
                 <input type="text" name="last_name" required><br>
                 Contact Number<br>
-                <input type="text" name="area_code" maxlength="5" placeholder="+44" style="width: 30px">
-                <input type="text" name="number" required style="width: 100px"><br>
+                <input type="text" name="area_code" required maxlength="3" placeholder="+44" style="width: 30px">
+                <input type="text" name="number" required placeholder="12345 67890" style="width: 100px"><br>
                 Mailbox<br>
                 <input type="email" name="mailbox"><br>
                 Address<br>
@@ -62,7 +64,28 @@
             </form>
         
         </main>
-        <footer>
+        <footer>           
+
+            <!-- Social Media Links -->
+
+            <br><hr><br>
+            
+            <section>
+                <a href="http://192.168.1.163:3000" target="_blank"><img src="../static/img/web-logo.png" class="img-logo-social"/></a>
+                <a href="https://instagram.com/kelvgooding" target="_blank"><img src="../static/img/instagram-logo.png" class="img-logo-social"/></a>
+                <a href="https://www.linkedin.com/in/kelvingooding/" target="_blank"><img src="../static/img/linkedin-logo.png" class="img-logo-social"/></a>
+                <a href="https://github.com/kelvgooding/" target="_blank"><img src="../static/img/github-logo.png" class="img-logo-social"/></a>
+                <a href="mailto:livelifeautomate@gmail.com?subject=Contacts - Feedback/Request"><img src="../static/img/mail-logo.png" class="img-logo-social"/></a>
+            </section>
+
+            <br>
+
+            <!-- Copyright -->
+            <section>
+                Created by Kelv Gooding<br>
+                © 2023 Live.Life.Automate! All rights reserved.<br>
+            </section>
+
         </footer>
     </body>
 </html>
