@@ -14,7 +14,7 @@ Contacts is a web app, which is used to store contact details of Family, Friends
 Run the following command to install the requirements.txt file
 
 ```
-pip install requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ## Dependencies
