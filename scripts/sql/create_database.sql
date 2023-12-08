@@ -1,15 +1,3 @@
-/* create database */
-
-CREATE DATABASE contacts;
-
-/* grant database access */
-
-GRANT ALL ON contacts.* TO 'kelv'@'%' IDENTIFIED BY "password";
-
-/* switch to database */
-
-USE contacts;
-
 /* create database table */
 
 CREATE TABLE contacts (
@@ -25,11 +13,3 @@ gender VARCHAR(1),
 grp VARCHAR(255),
 added_on VARCHAR(255)
 );
-
-/* view table columns */
-
-SHOW COLUMNS FROM contacts;
-
-/* view table data */
-
-SELECT * FROM contacts;
