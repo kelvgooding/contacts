@@ -1,11 +1,11 @@
-"""
-Author: Kelvin Gooding
-Created: 2023-08-08
-Updated: 2023-10-14
-Version: 1.1
-"""
+#!/usr/bin/python3
 
-#!/usr/bin/env python3
+"""
+Author: Kelv Gooding
+Created: 2023-08-08
+Updated: 2023-12-08
+Version: 1.2.0
+"""
 
 # Modules
 
@@ -14,21 +14,21 @@ import csv
 from datetime import datetime
 import os
 import platform
+import getpass
 
 # Variables
 
-base_path = f'/home/pi/apps/contacts'
+base_path = f'/home/{getpass.getuser()}/apps/contacts'
 db_filename = 'contacts.db'
-db_path = os.path.join(base_path, db_filename)
 exp_filename = f'contacts_export_{datetime.today().strftime("%Y%m%d_%H%M%S")}.csv'
 imp_filename = 'contacts_import.csv'
 
-# Sqlite3 Variables
-
-conn = sqlite3.connect(db_path, check_same_thread=False)
-c = conn.cursor()
+# Script
 
 def export_data():
+
+    conn = sqlite3.connect(os.path.join(base_path, db_filename), check_same_thread=False)
+    c = conn.cursor()
 
     # Headers should reflect the column names in the contacts table.
 
@@ -50,6 +50,9 @@ def export_data():
     file.close()
 
 def import_data():
+
+    conn = sqlite3.connect(os.path.join(base_path, db_filename), check_same_thread=False)
+    c = conn.cursor()
 
     # Select all data from the contacts table.
 

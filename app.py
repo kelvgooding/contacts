@@ -1,11 +1,11 @@
-"""
-Author: Kelvin Gooding
-Created: 2022-06-29
-Updated: 2023-12-06
-Version: 1.7
-"""
-
 #!/usr/bin/python3
+
+"""
+Author: Kelv Gooding
+Created: 2022-06-29
+Updated: 2023-12-08
+Version: 1.8.0
+"""
 
 # Modules
 
@@ -14,13 +14,15 @@ from modules import db_check
 from modules import imp_exp
 from modules import dir_check
 import os
+import getpass
 
 # General Variables
 
-base_path = f'/home/{os.getlogin()}/apps/contacts'
+# Default base path is root. Update the base path based on your environment.
+
+base_path = f'/home/{getpass.getuser()}/apps/contacts_V2'
 db_filename = 'contacts.db'
-db_path = os.path.join(base_path, db_filename)
-sql_script = f'{base_path}/scripts/sql/create_database.sql'
+sql_script = f'{base_path}/scripts/sql/create_tables.sql'
 
 # SQLite3 Variables
 
@@ -31,9 +33,9 @@ c = conn.cursor()
 # Flask Variables
 
 app = Flask(__name__)
-app.secret_key = "password"
+app.secret_key = os.urandom(32)
 
-# Routes
+# Script
 
 @app.route("/", methods=["POST", "GET"])
 def index():
