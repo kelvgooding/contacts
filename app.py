@@ -20,7 +20,7 @@ import os
 base_path = f'/home/{os.getlogin()}/apps/contacts'
 db_filename = 'contacts.db'
 db_path = os.path.join(base_path, db_filename)
-sql_script = f'{base_path}/scripts/sql/create_tables.sql'
+sql_script = f'{base_path}/scripts/sql/create_database.sql'
 
 # SQLite3 Variables
 
