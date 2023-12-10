@@ -4,7 +4,7 @@
 Author: Kelv Gooding
 Created: 2022-06-29
 Updated: 2023-12-10
-Version: 1.8.1
+Version: 1.8.2
 """
 
 # Modules
@@ -14,7 +14,6 @@ from modules import db_check
 from modules import imp_exp
 from modules import dir_check
 import os
-import getpass
 
 # General Variables
 
