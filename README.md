@@ -6,7 +6,7 @@ Repository: https://github.com/kelvgooding/contacts
 
 Contacts is a web app, which is used to store contact details of Family, Friends, Neighbours etc. The data is stored in an local SQLite3 database, which is created for the first time when the application is launched.
 
-## OS Compatabilty
+## OS Compatibility
 
 - Linux
 - Windows
