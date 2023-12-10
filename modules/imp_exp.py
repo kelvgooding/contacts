@@ -3,8 +3,8 @@
 """
 Author: Kelv Gooding
 Created: 2023-08-08
-Updated: 2023-12-08
-Version: 1.2.0
+Updated: 2023-12-10
+Version: 1.2.1
 """
 
 # Modules
@@ -18,7 +18,7 @@ import getpass
 
 # Variables
 
-base_path = f'/home/{getpass.getuser()}/apps/contacts'
+base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 db_filename = 'contacts.db'
 exp_filename = f'contacts_export_{datetime.today().strftime("%Y%m%d_%H%M%S")}.csv'
 imp_filename = 'contacts_import.csv'
