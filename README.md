@@ -4,11 +4,27 @@
 
 Repository: https://github.com/kelvgooding/contacts
 
-Contacts is a web app, which is used to store contact details of Family, Friends, Neighbours etc. The data is stored in an mysql database. This application has been dockerised, and the image can be used for this application.
+Contacts is a web app, which is used to store contact details of Family, Friends, Neighbours etc. The data is stored in an local SQLite3 database, which is created for the first time when the application is launched.
 
-## System Requirements
+## OS Compatabilty
 
 - Linux
+- Windows
+
+## Dependencies
+
+### Linux Packages
+
+- python3
+- python3-pip
+- docker.io
+
+### Python Modules
+
+- from flask import Flask, render_template, request
+- from modules import db_check
+- from modules import imp_exp
+- import os
 
 ## Installation
 
@@ -35,19 +51,6 @@ python3 ~/contacts/app.py >> ~/app_contacts_`date +\%Y\%m\%d`.log 2>&1 &
 ```
 
 The log file will contain the URL for the application, along with each request that is made.
-
-## Dependencies
-
-### Software:
-
-- Python
-
-### Modules:
-
-- from flask import Flask, render_template, request
-- from modules import db_check
-- from modules import imp_exp
-- import os
 
 ## Stakeholders
 
