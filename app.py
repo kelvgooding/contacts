@@ -3,8 +3,8 @@
 """
 Author: Kelv Gooding
 Created: 2022-06-29
-Updated: 2023-12-08
-Version: 1.8.0
+Updated: 2023-12-10
+Version: 1.8.1
 """
 
 # Modules
@@ -20,7 +20,7 @@ import getpass
 
 # Default base path is root. Update the base path based on your environment.
 
-base_path = f'/home/{getpass.getuser()}/apps/contacts_V2'
+base_path = os.path.dirname(os.path.abspath(__file__))
 db_filename = 'contacts.db'
 sql_script = f'{base_path}/scripts/sql/create_tables.sql'
 

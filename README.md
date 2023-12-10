@@ -10,13 +10,31 @@ Contacts is a web app, which is used to store contact details of Family, Friends
 
 - Linux
 
-## Prerequisites
+## Installation
 
-Run the following command to install the requirements.txt file:
+To download this web application, run the following commands on your linux environment:
+
+Downloading the repository from GitHub:
+```
+cd ~
+git clone https://github.com/kelvgooding/contacts.git
+```
+
+Installating the requirements.txt file to ensure the correct packages are available and installed:
 
 ```
+cd ~/contacts
 pip3 install -r requirements.txt
 ```
+
+Running the application:
+
+```
+cd ~/contacts
+python3 ~/contacts/app.py >> ~/app_contacts_`date +\%Y\%m\%d`.log 2>&1 &
+```
+
+The log file will contain the URL for the application, along with each request that is made.
 
 ## Dependencies
 
