@@ -21,9 +21,11 @@ Contacts is a web app, which is used to store contact details of Family, Friends
 
 ### Python Modules
 
-- from flask import Flask, render_template, request
+- from flask import Flask, render_template, request, flash
+- from datetime import datetime
 - from modules import db_check
 - from modules import imp_exp
+- from modules import dir_check
 - import os
 
 ## Installation
