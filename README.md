@@ -35,7 +35,7 @@ To download this web application, run the following commands on your linux envir
 Downloading the repository from GitHub:
 ```
 cd ~
-git clone https://github.com/kelvgooding/contacts.git
+git clone git@github.com:kelvgooding/contacts.git
 ```
 
 Installating the requirements.txt file to ensure the correct packages are available and installed:
