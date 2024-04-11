@@ -3,8 +3,8 @@
 """
 Author: Kelv Gooding
 Created: 2022-06-29
-Updated: 2023-12-11
-Version: 1.8.3
+Updated: 2024-04-11
+Version: 1.9
 """
 
 # Modules
@@ -18,16 +18,15 @@ import os
 
 # General Variables
 
-# Default base path is root. Update the base path based on your environment.
-
-base_path = os.path.dirname(os.path.abspath(__file__))
+base_path = os.path.expanduser('~/homelab')
+app_name = os.path.basename(os.path.dirname(os.path.abspath(__file__)))
 db_filename = 'contacts.db'
-sql_script = f'{base_path}/scripts/sql/create_tables.sql'
+sql_script = f'{base_path}/apps/{app_name}/scripts/sql/create_tables.sql'
 
 # SQLite3 Variables
 
-db_check.check_db(f'{base_path}', f'{db_filename}', f'{sql_script}')
-conn = db_check.sqlite3.connect(os.path.join(base_path, db_filename), check_same_thread=False)
+db_check.check_db(os.path.join(base_path, 'db'), f'{db_filename}', f'{sql_script}')
+conn = db_check.sqlite3.connect(os.path.join(base_path, 'db', db_filename), check_same_thread=False)
 c = conn.cursor()
 
 # Flask Variables
