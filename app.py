@@ -18,10 +18,10 @@ import os
 
 # General Variables
 
-base_path = os.path.expanduser('~/homelab/contacts')
+base_path = os.path.expanduser('~/homelab/apps/contacts')
 app_name = os.path.basename(os.path.dirname(os.path.abspath(__file__)))
 db_filename = 'contacts.db'
-sql_script = f'{base_path}/scripts/sql/create_tables.sql'
+sql_script = os.path.join(base_path, 'scripts/sql/create_tables.sql')
 
 # SQLite3 Variables
 
