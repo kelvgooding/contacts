@@ -3,36 +3,41 @@
 """
 Author: Kelv Gooding
 Created: 2022-06-29
-Updated: 2024-04-11
-Version: 1.9
+Updated: 2024-05-03
+Version: 2.0
 """
 
 # Modules
 
 from flask import Flask, render_template, request, flash
-from datetime import datetime
 from modules import db_check
-from modules import imp_exp
+from modules import import_data
+from modules import export_data
 from modules import dir_check
 import os
 
 # General Variables
 
-base_path = os.path.expanduser('~/homelab')
+base_path = os.path.expanduser('~/homelab/apps/contacts')
 app_name = os.path.basename(os.path.dirname(os.path.abspath(__file__)))
 db_filename = 'contacts.db'
-sql_script = f'{base_path}/apps/{app_name}/scripts/sql/create_tables.sql'
+sql_script = os.path.join(base_path, 'scripts/sql/create_tables.sql')
 
 # SQLite3 Variables
 
-db_check.check_db(os.path.join(base_path, 'db'), f'{db_filename}', f'{sql_script}')
-conn = db_check.sqlite3.connect(os.path.join(base_path, 'db', db_filename), check_same_thread=False)
+db_check.check_db(os.path.join(base_path), f'{db_filename}', f'{sql_script}')
+conn = db_check.sqlite3.connect(os.path.join(base_path, db_filename), check_same_thread=False)
 c = conn.cursor()
 
 # Flask Variables
 
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
+
+# Generate import and export directories
+
+dir_check.check_dir(base_path, 'export')
+dir_check.check_dir(base_path, 'import')
 
 # Script
 
@@ -91,17 +96,13 @@ def delete_contact():
 
 @app.route("/import_export", methods=["POST", "GET"])
 def import_export():
-
-    headings = ['First Name', 'Last Name', 'Contact Number', 'Mailbox', 'Address', 'City/Town', 'Postcode', 'Birthday', 'Gender', 'Group', 'Added On']
-        
+       
     if 'export_btn' in request.form and request.method == "POST":
-        dir_check.check_dir(base_path, 'export')
-        imp_exp.export_data(headings, 'contacts', 'contacts.db', f'contacts_export_{datetime.today().strftime("%Y%m%d_%H%M%S")}.csv')
+        export_data.export_data('./', 'export', 'contacts.db', 'contacts')
         flash('Export has been completed successfully!')
 
     if 'import_btn' in request.form and request.method == "POST":
-        dir_check.check_dir(base_path, 'import')
-        imp_exp.import_data('contacts.db')
+        import_data.import_data('contacts.db', 'import/book1.csv', './', f'sql/create_tables.sql', 'contacts')
         flash('Import has been completed successfully!')
 
     return render_template('import_export.html')
