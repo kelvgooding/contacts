@@ -102,7 +102,8 @@ def import_export():
         flash('Export has been completed successfully!')
 
     if 'import_btn' in request.form and request.method == "POST":
-        import_data.import_data('contacts.db', 'import/book1.csv', './', f'sql/create_tables.sql', 'contacts')
+        import_file = (os.popen('ls -t import | head -n1').read().strip())
+        import_data.import_data(f'contacts.db', os.path.join('import/', str(import_file)), './', f'sql/create_tables.sql', 'contacts')
         flash('Import has been completed successfully!')
 
     return render_template('import_export.html')

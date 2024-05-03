@@ -38,5 +38,4 @@ def import_data(db_filename, csv_filename, base_path, sql_filename, table_name):
             query = f'INSERT INTO {table_name} VALUES ({placeholders})'
             c.execute(query, row)
             conn.commit()
-
-#import_data('filename.db', 'book1.csv', '/home/kgooding/homelab/scripts/python/modules', 'create_tables.sql', 'gamelist')
+        os.remove(csv_filename)
