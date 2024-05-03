@@ -18,7 +18,7 @@ import os
 
 # General Variables
 
-base_path = os.path.expanduser(f'/home/kgooding/homelab/apps/contacts')
+base_path = os.path.expanduser('~/homelab/contacts')
 app_name = os.path.basename(os.path.dirname(os.path.abspath(__file__)))
 db_filename = 'contacts.db'
 sql_script = f'{base_path}/scripts/sql/create_tables.sql'
