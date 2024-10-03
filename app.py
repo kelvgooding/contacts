@@ -3,8 +3,8 @@
 """
 Author: Kelv Gooding
 Created: 2022-06-29
-Updated: 2024-05-03
-Version: 2.0
+Updated: 2024-10-03
+Version: 2.1
 """
 
 # Modules
@@ -18,14 +18,18 @@ import os
 
 # General Variables
 
-base_path = os.path.expanduser('~/homelab/apps/contacts')
+base_path = os.path.dirname(os.path.abspath(__file__))
+print(base_path)
 app_name = os.path.basename(os.path.dirname(os.path.abspath(__file__)))
+print(app_name)
 db_filename = 'contacts.db'
+print(db_filename)
 sql_script = os.path.join(base_path, 'scripts/sql/create_tables.sql')
+print(sql_script)
 
 # SQLite3 Variables
 
-db_check.check_db(os.path.join(base_path), f'{db_filename}', f'{sql_script}')
+db_check.check_db(base_path, f'{db_filename}', f'{sql_script}')
 conn = db_check.sqlite3.connect(os.path.join(base_path, db_filename), check_same_thread=False)
 c = conn.cursor()
 
@@ -47,9 +51,9 @@ def index():
     # Headers should reflect the column names in the contacts table.
 
     headings = ['First Name', 'Last Name', 'Contact Number', 'Mailbox', 'Address', 'City/Town', 'Postcode', 'Birthday', 'Gender', 'Group', 'Added On']
-    
+
     # Select all data from the contacts table.
-    
+
     c.execute('SELECT * FROM contacts WHERE GRP NOT LIKE "ARCHIVED" ORDER BY FIRST_NAME ASC')
     contacts_data = c.fetchall()
 
@@ -96,7 +100,7 @@ def delete_contact():
 
 @app.route("/import_export", methods=["POST", "GET"])
 def import_export():
-       
+
     if 'export_btn' in request.form and request.method == "POST":
         export_data.export_data('./', 'export', 'contacts.db', 'contacts')
         flash('Export has been completed successfully!')
