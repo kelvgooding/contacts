@@ -19,13 +19,9 @@ import os
 # General Variables
 
 base_path = os.path.dirname(os.path.abspath(__file__))
-print(base_path)
 app_name = os.path.basename(os.path.dirname(os.path.abspath(__file__)))
-print(app_name)
 db_filename = 'contacts.db'
-print(db_filename)
 sql_script = os.path.join(base_path, 'scripts/sql/create_tables.sql')
-print(sql_script)
 
 # SQLite3 Variables
 

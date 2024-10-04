@@ -49,7 +49,7 @@ Running the application:
 
 ```
 cd ~/contacts
-python3 ~/contacts/app.py >> ~/app_contacts_`date +\%Y\%m\%d`.log 2>&1 &
+python3 /home/`whoami`/homelab/apps/contacts/app.py >> /tmp/app_contacts_`hostname`_`date +\%Y\%m\%d`.log 2>&1 &
 ```
 
 The log file will contain the URL for the application, along with each request that is made.
