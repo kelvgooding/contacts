@@ -6,19 +6,13 @@ Repository: https://github.com/kelvgooding/contacts
 
 Contacts is a web app, which is used to store contact details of Family, Friends, Neighbours etc. The data is stored in an local SQLite3 database, which is created for the first time when the application is launched.
 
-## Dependencies
-
-```
-sudo apt install docker
-```
-
 ## Setup
 
 Update Linux OS and ensure the Docker package is installed:
 
 ```
 sudo apt update -y
-sudo install docker.io
+sudo install docker
 ```
 
 Clone the repo from GitHub:
