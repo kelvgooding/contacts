@@ -6,63 +6,44 @@ Repository: https://github.com/kelvgooding/contacts
 
 Contacts is a web app, which is used to store contact details of Family, Friends, Neighbours etc. The data is stored in an local SQLite3 database, which is created for the first time when the application is launched.
 
-## OS Compatibility
-
-- Linux
-- Windows
-
 ## Dependencies
 
-### Linux Packages
+```
+sudo apt install docker
+```
 
-- python3
-- python3-pip
-- docker.io
+## Setup
 
-### Python Modules
+Update Linux OS and ensure the Docker package is installed:
 
-- from flask import Flask, render_template, request, flash
-- from datetime import datetime
-- from modules import db_check
-- from modules import imp_exp
-- from modules import dir_check
-- import os
+```
+apt update -y
+sudo install docker.io
+```
 
-## Installation
-
-To download this web application, run the following commands on your linux environment:
-
-Downloading the repository from GitHub:
+Clone the repo from GitHub:
 ```
 cd ~
 git clone git@github.com:kelvgooding/contacts.git
 ```
 
-Installating the requirements.txt file to ensure the correct packages are available and installed:
+To create the Docker image and run the container, run the following command:
 
 ```
 cd ~/contacts
-pip3 install -r requirements.txt
+docker-compose -f docker-compose.yml up -d
 ```
 
-Running the application:
+Any files which are required to be peristent, such as sqlite3 database files are kept in:
 
 ```
-cd ~/contacts
-python3 /home/`whoami`/homelab/apps/contacts/app.py >> /tmp/app_contacts_`hostname`_`date +\%Y\%m\%d`.log 2>&1 &
+/var/lib/docker/volumes
 ```
-
-The log file will contain the URL for the application, along with each request that is made.
-
-## Stakeholders
-
-PM: Kelvin Gooding | kelv.gooding@outlook.com<br>
-Design: Kelvin Gooding | kelv.gooding@outlook.com<br>
-Dev: Kelvin Gooding | kelv.gooding@outlook.com<br>
-QA: Kelvin Gooding | kelv.gooding@outlook.com<br>
-Support: Kelvin Gooding | kelv.gooding@outlook.com
 
 ## Contribution
 
-Issue Tracker: https://github.com/kelvgooding/contacts/issues<br>
-Contact: Kelvin Gooding | kelv.gooding@outlook.com
+| Role      | Name            | Email                        |
+|-----------|-----------------|------------------------------|
+| Design    | Kelvin Gooding  | kelv.gooding@outlook.com     |
+| Developer | Kelvin Gooding  | kelv.gooding@outlook.com     |
+| Support   | Kelvin Gooding  | kelv.gooding@outlook.com     |

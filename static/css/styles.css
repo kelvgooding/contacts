@@ -1,9 +1,8 @@
 body {
-    background-color: #FFFFFF;
+    background-color: #8faa95;
     font-size: 1em;
     color: #000000;
     margin: 0;
-    padding: 1.5em 1.5em 1.5em 1.5em;
     text-align: center;
 }
 
@@ -23,6 +22,10 @@ td, th {
     padding-right: 5px;
 }
 
+hr {
+    width: 60px;
+}
+
 button {
     width: 150px;
     height: 40px;
@@ -39,9 +42,18 @@ button {
     margin-top: 5px;
 }
 
+header {
+    background-color: #4a664f;
+    min-width: 100%;
+    height: 75px;
+    font-size: 20px;
+    color: #000000;
+    align-content: center;
+}
+
 footer {
     margin-top: auto;
-    background-color: #ffffff;
+    background-color: #4a664f;
     min-width: 100%;
     height: 100px;
     padding-top: 5px;
@@ -50,13 +62,20 @@ footer {
 }
 
 .img-logo-social {
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     margin-left: 5px;
     margin-right: 5px;
     margin-top: 10px;
 }
 
+.img-logo {
+    width: 100px;
+    height: 100px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 10px;
+}
 
 @media screen and (max-width: 600px) {
     .img-main {
@@ -70,4 +89,42 @@ footer {
         width: 325px;
         height: 110px;
     }
+}
+
+
+.picks-cards {
+    height: 250px;
+    width: 400px;
+    border-radius: 10px;
+    background-color: #325e36;
+    color: #FFFFFF;
+    margin: auto auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    transition: 1s;
+}
+
+
+
+.contacts-searchbar {
+    width: 300px;
+    height: 38px;
+    background-color: #FFFFFF;
+    text-align: center;
+    font-family: NewFont;
+    border: 1px solid #999;
+    border-radius: 2px;
+    margin-top: 5px;
+}
+
+.group-banner {
+    height: 20px;
+    width: 100px;
+    border-radius: 10px;
+    background-color: #fbff00;
+    color: #000000;
+    margin: auto auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    transition: 1s;
 }

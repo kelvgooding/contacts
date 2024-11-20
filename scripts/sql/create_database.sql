@@ -1,4 +1,4 @@
-/* create database table */
+/* Create DB */
 
 CREATE TABLE contacts (
 first_name VARCHAR(255),

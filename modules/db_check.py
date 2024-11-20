@@ -4,7 +4,7 @@
 Author: Kelv Gooding
 Created: 2023-11-27
 Updated: 2023-12-08
-Version: 1.1.0
+Version: 1.1
 """
 
 # Modules
