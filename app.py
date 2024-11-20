@@ -3,7 +3,7 @@
 """
 Author: Kelv Gooding
 Created: 2022-06-29
-Updated: 2024-10-03
+Updated: 2024-11-20
 Version: 2.1
 """
 
@@ -25,8 +25,8 @@ sql_script = os.path.join(base_path, 'scripts/sql/create_tables.sql')
 
 # SQLite3 Variables
 
-db_check.check_db(base_path, f'{db_filename}', f'{sql_script}')
-conn = db_check.sqlite3.connect(os.path.join(base_path, db_filename), check_same_thread=False)
+db_check.check_db('/data', f'{db_filename}', f'{sql_script}')
+conn = db_check.sqlite3.connect('/data/contacts.db', check_same_thread=False)
 c = conn.cursor()
 
 # Flask Variables
@@ -46,7 +46,7 @@ def index():
 
     # Headers should reflect the column names in the contacts table.
 
-    headings = ['First Name', 'Last Name', 'Contact Number', 'Mailbox', 'Address', 'City/Town', 'Postcode', 'Birthday', 'Gender', 'Group', 'Added On']
+    headings = ['First Name', 'Last Name', 'Contact Number', 'Mailbox', 'Address', 'City/Town', 'Postcode', 'Birthday', 'Gender', 'Instagram', 'Group', 'Added On']
 
     # Select all data from the contacts table.
 
@@ -73,7 +73,7 @@ def new_contact():
     # Values will be taken from each input box and pushed into the contacts table.
 
     if request.method == "POST":
-        c.execute(f"INSERT INTO contacts VALUES ('{request.form.get('first_name')}', '{request.form.get('last_name')}', '{request.form.get('area_code')} {request.form.get('number')}', '{request.form.get('mailbox')}', '{request.form.get('address')}', '{request.form.get('town')}', '{request.form.get('postcode')}', '{request.form.get('birthday')}', '{request.form.get('gender')}', '{request.form.get('group')}', CURRENT_TIMESTAMP)")
+        c.execute(f"INSERT INTO contacts VALUES ('{request.form.get('first_name').upper()}', '{request.form.get('last_name').upper()}', '{request.form.get('area_code')} {request.form.get('number')}', '{request.form.get('mailbox')}', '{request.form.get('address')}', '{request.form.get('town')}', '{request.form.get('postcode')}', '{request.form.get('birthday')}', '{request.form.get('gender')}', '{request.form.get('social_ig')}', '{request.form.get('group')}', CURRENT_TIMESTAMP)")
         conn.commit()
 
     return render_template('new_contact.html')
@@ -111,3 +111,4 @@ def import_export():
 if __name__ == "__main__":
     app.debug = True
     app.run(host="0.0.0.0", port=3003)
+    #app.run(host="0.0.0.0")
