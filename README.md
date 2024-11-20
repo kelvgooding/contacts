@@ -12,7 +12,14 @@ Update Linux OS and ensure the Docker package is installed:
 
 ```
 sudo apt update -y
-sudo apt install docker
+sudo apt install docker.io
+```
+
+Ensure that the Docker process is running:
+
+```
+sudo systemctl start docker
+sudo systemctl status docker
 ```
 
 Clone the repo from GitHub:
