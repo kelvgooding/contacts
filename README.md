@@ -12,7 +12,7 @@ Update Linux OS and ensure the Docker package is installed:
 
 ```
 sudo apt update -y
-sudo install docker
+sudo apt install docker
 ```
 
 Clone the repo from GitHub:
