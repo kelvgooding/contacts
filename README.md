@@ -27,7 +27,7 @@ To create the Docker image and run the container, run the following command:
 
 ```
 cd ~/apps/contacts
-docker-compose -f docker-compose.yml up -d
+sudo docker-compose -f docker-compose.yml up -d
 ```
 
 Any files which are required to be peristent, such as sqlite3 database files are kept in:
