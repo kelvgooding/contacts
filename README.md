@@ -6,22 +6,24 @@ Repository: https://github.com/kelvgooding/contacts
 
 Contacts is a web app, which is used to store contact details of Family, Friends, Neighbours etc. The data is stored in an local SQLite3 database, which is created for the first time when the application is launched.
 
-## Dependencies
-
-```
-sudo apt install docker
-```
-
 ## Setup
 
 Update Linux OS and ensure the Docker package is installed:
 
 ```
-apt update -y
-sudo install docker.io
+sudo apt update -y
+sudo apt install docker.io
+```
+
+Ensure that the Docker process is running:
+
+```
+sudo systemctl start docker
+sudo systemctl status docker
 ```
 
 Clone the repo from GitHub:
+
 ```
 mkdir ~/apps
 cd ~/apps
@@ -32,7 +34,17 @@ To create the Docker image and run the container, run the following command:
 
 ```
 cd ~/apps/contacts
+<<<<<<< HEAD
 docker-compose -f docker-compose.yml up -d
+=======
+sudo docker-compose -f docker-compose.yml up -d
+```
+
+To ensure the container is running, run the following command:
+
+```
+sudo docker ps -f "name=contacts_app_1"
+>>>>>>> main
 ```
 
 Any files which are required to be peristent, such as sqlite3 database files are kept in:
