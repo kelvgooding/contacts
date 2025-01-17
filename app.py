@@ -1,10 +1,8 @@
-#!/usr/bin/python3
-
 """
 Author: Kelv Gooding
 Created: 2022-06-29
-Updated: 2024-11-20
-Version: 2.1
+Updated: 2025-01-17
+Version: 2.x
 """
 
 # Modules
@@ -16,7 +14,7 @@ from modules import export_data
 from modules import dir_check
 import os
 
-# General Variables
+# Variables
 
 base_path = os.path.dirname(os.path.abspath(__file__))
 app_name = os.path.basename(os.path.dirname(os.path.abspath(__file__)))
@@ -25,8 +23,8 @@ sql_script = os.path.join(base_path, 'scripts/sql/create_tables.sql')
 
 # SQLite3 Variables
 
-db_check.check_db('/data', f'{db_filename}', f'{sql_script}')
-conn = db_check.sqlite3.connect('/data/contacts.db', check_same_thread=False)
+db_check.check_db(f'{base_path}', f'{db_filename}', f'{sql_script}')
+conn = db_check.sqlite3.connect(os.path.join(base_path, db_filename), check_same_thread=False)
 c = conn.cursor()
 
 # Flask Variables
@@ -38,8 +36,6 @@ app.secret_key = os.urandom(32)
 
 dir_check.check_dir(base_path, 'export')
 dir_check.check_dir(base_path, 'import')
-
-# Script
 
 @app.route("/", methods=["POST", "GET"])
 def index():
@@ -111,4 +107,3 @@ def import_export():
 if __name__ == "__main__":
     app.debug = True
     app.run(host="0.0.0.0", port=3003)
-    #app.run(host="0.0.0.0")
