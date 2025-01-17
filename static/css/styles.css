@@ -91,20 +91,32 @@ footer {
     }
 }
 
-
-.picks-cards {
-    height: 250px;
-    width: 400px;
-    border-radius: 10px;
-    background-color: #325e36;
-    color: #FFFFFF;
-    margin: auto auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    transition: 1s;
+/* Optional: Responsive design for smaller screens */
+@media screen and (max-width: 600px) {
+    .picks-cards {
+        width: 90%; /* Allow the card to take up more space on smaller screens */
+        max-width: none; /* Remove max-width constraint on small screens */
+        height: auto; /* Allow height to adjust based on content */
+    }
 }
 
 
+.picks-cards {
+    width: 100%; /* Allow the card to scale based on container width */
+    max-width: 400px; /* Set maximum width for larger screens */
+    height: 300px;
+    border-radius: 15px; /* Slightly larger border radius for smoother curves */
+    background-color: #325e36;
+    color: #FFFFFF;
+    margin: 20px auto; /* Center the card horizontally with margin */
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    justify-content: space-between; /* Space between content */
+    padding: 15px; /* Padding for internal spacing */
+    box-sizing: border-box; /* Ensure padding doesn't affect total width/height */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add subtle shadow for depth */
+    transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
+}
 
 .contacts-searchbar {
     width: 300px;
@@ -113,7 +125,7 @@ footer {
     text-align: center;
     font-family: NewFont;
     border: 1px solid #999;
-    border-radius: 2px;
+    border-radius: 15px; /* Rounded corners */
     margin-top: 5px;
 }
 
@@ -127,4 +139,51 @@ footer {
     margin-top: 20px;
     margin-bottom: 20px;
     transition: 1s;
+}
+
+#dropdown {
+    width: 300px; /* Same width as the search bar */
+    height: 38px;
+    background-color: #FFFFFF;
+    text-align: center;
+    font-family: NewFont;
+    border: 1px solid #999;
+    border-radius: 15px; /* Rounded corners */
+    margin-top: 5px;
+}
+
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin-top: 20px;
+}
+
+.contact-name {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.contact-info {
+    font-size: 1em;
+    margin-bottom: 15px;
+}
+
+.contact-info p {
+    margin: 5px 0;
+}
+
+.contact-details {
+    font-size: 0.9em;
+    margin-top: 10px;
+}
+
+.contact-details p {
+    margin: 5px 0;
+}
+
+.contact-details strong {
+    font-weight: bold;
 }

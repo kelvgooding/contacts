@@ -6,6 +6,7 @@
         <link rel="icon" type="image/x-icon" href="../static/img/logo.png">
         <link rel="stylesheet" href="../static/css/styles.css">
         <script src="../static/javascript/searchbar_filter.js"></script>
+        <script src="../static/javascript/dropdown_apply.js"></script>
         <title>Home | Contacts</title>
     </head>
 
@@ -24,14 +25,19 @@
 
             <br>
 
-            <input id="searchbar" onkeyup="search_participants()" type="text" name="search" placeholder="SEARCH HERE" class="contacts-searchbar">
-            <h2>FILTER</h2>
+            <div class="form-group">
+                <label for="dropdown">SEARCH</label>
+            </div>
 
-            <p>SELECT A CATEGORY:</p>
+            <input id="searchbar" onkeyup="search_participants()" type="text" name="search" placeholder="SEARCH HERE" class="contacts-searchbar">
+        
+            <div class="form-group">
+                <label for="dropdown">CATEGORY</label>
+            </div>
 
             <form method="POST">
             
-            <select name="dropdownbox" style="width: 150px">
+            <select name="dropdownbox" id="dropdown" onchange="submitDropdownForm()">
                 <option value="-">-</option>
                 <option value="Family">Family</option>
                 <option value="Friends">Friends</option>
@@ -43,23 +49,38 @@
             </select>
 
             <br><br>
-
-            <button type="submit">Apply Filter</button><br><br>
             
-            {{ contacts_count.0.0 }} contacts have been filtered.
+            {{ contacts_count.0.0 }} Contact(s) found:
 
         {% for a in contacts_data %}
         <div class="contacts-row">
             <div class="picks-cards">
-                <h2>{{ a.0 }} {{ a.1 }}</h2>             
-                {{ a.2 }}<br>
-                {{ a.3 }}<br>
+                <!-- Name -->
+                <h2 class="contact-name">{{ a.0 }} {{ a.1 }}</h2> 
+                
+                <!-- Contact Information Section -->
+                <div class="contact-info">
+                    <p>{{ a.2 }}</p> <!-- Description or Address -->
+                </div>
+                
+                <!-- Divider -->
                 <hr>
-                {{ a.4 }}, {{ a.5 }}, {{ a.6 }}
-                <div class="group-banner">{{ a.10 }}</div>
-                <a href="https://instagram.com/{{ a.9 }}" target="_blank"><img src="../static/img/instagram-logo.png" class="img-logo-social"/></a>
+                
+                <!-- Additional Contact Details Section -->
+                <div class="contact-details">
+                    <p><strong>Mailbox:</strong> {{ a.3 }}</p> <!-- Phone -->
+                    <p><strong>Address:</strong> {{ a.4 }}</p>
+                    <p><strong>City:</strong> {{ a.5 }}</p>
+                    <p><strong>Country:</strong> {{ a.6 }}</p>
+                </div>
+                
+                <!-- Social Media Link -->
+                <a href="https://instagram.com/{{ a.9 }}" target="_blank" class="social-link">
+                    <img src="../static/img/instagram-logo.png" class="img-logo-social"/>
+                </a>
             </div>
         </div>
+        
         {% endfor %}
 
         </main>
