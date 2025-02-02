@@ -9,81 +9,63 @@
         <script src="../static/javascript/dropdown_apply.js"></script>
         <title>Home | Contacts</title>
     </head>
-
+    
     <body>
         <header>
-
-            <a href="{{ url_for('index') }}">Home</a> |
-            <a href="{{ url_for('new_contact') }}">Add</a> |
-            <a href="{{ url_for('delete_contact') }}">Delete</a> |
-            <a href="{{ url_for('import_export') }}">Export / Import</a>
-            
-        </header>
-        <main>
-            
-            <img src="../static/img/logo.png" class="img-logo"/>
-
-            <br>
-
-            <div class="form-group">
-                <label for="dropdown">SEARCH</label>
+            <a href="{{ url_for('index') }}">
+                <img src="../static/img/logo.png" class="img-logo"/>
+            </a>
+            <div class="contacts-searchbar-container">
+                <input id="searchbar" onkeyup="search_participants()" type="text" name="search" class="contacts-searchbar">
             </div>
-
-            <input id="searchbar" onkeyup="search_participants()" type="text" name="search" placeholder="SEARCH HERE" class="contacts-searchbar">
+        </header>
+        
+        <main>
+            <br>
+            <div class="header-container">
+                <div class="button-container">
+                    <a href="{{ url_for('new_contact') }}" class="btn btn-add">Add</a>
+                    <a href="{{ url_for('delete_contact') }}" class="btn btn-delete">Delete</a>
+                    <a href="{{ url_for('import_export') }}" class="btn btn-import-export">Import / Export</a>
+                </div>
+            </div>
         
             <div class="form-group">
                 <label for="dropdown">CATEGORY</label>
+                <select name="dropdownbox" id="dropdown" onchange="submitDropdownForm()">
+                    <option value="-">-</option>
+                    <option value="Family">Family</option>
+                    <option value="Friends">Friends</option>
+                    <option value="Neighbours">Neighbours</option>
+                    <option value="Work">Work</option>
+                    <option value="Company">Company</option>
+                    <option value="Other">Other</option>
+                    <option value="Archived">Archived</option>
+                </select>
             </div>
-
-            <form method="POST">
             
-            <select name="dropdownbox" id="dropdown" onchange="submitDropdownForm()">
-                <option value="-">-</option>
-                <option value="Family">Family</option>
-                <option value="Friends">Friends</option>
-                <option value="Neighbours">Neighbours</option>
-                <option value="Work">Work</option>
-                <option value="Company">Company</option>
-                <option value="Other">Other</option>
-                <option value="Archived">Archived</option>
-            </select>
+            <p>{{ contacts_count.0.0 }} Contact(s) found:</p>
 
-            <br><br>
-            
-            {{ contacts_count.0.0 }} Contact(s) found:
-
-        {% for a in contacts_data %}
-        <div class="contacts-row">
-            <div class="picks-cards">
-                <!-- Name -->
-                <h2 class="contact-name">{{ a.0 }} {{ a.1 }}</h2> 
-                
-                <!-- Contact Information Section -->
-                <div class="contact-info">
-                    <p>{{ a.2 }}</p> <!-- Description or Address -->
+            {% for a in contacts_data %}
+            <div class="contacts-row">
+                <div class="picks-cards">
+                    <h2 class="contact-name">{{ a.0 }} {{ a.1 }}</h2> 
+                    <div class="contact-info">
+                        <p>{{ a.2 }}</p>
+                    </div>
+                    <hr>
+                    <div class="contact-details">
+                        <p><strong>Mailbox:</strong> {{ a.3 }}</p>
+                        <p><strong>Address:</strong> {{ a.4 }}</p>
+                        <p><strong>City/Town:</strong> {{ a.5 }}</p>
+                        <p><strong>Postcode:</strong> {{ a.6 }}</p>
+                    </div>
+                    <a href="https://instagram.com/{{ a.9 }}" target="_blank" class="social-link">
+                        <img src="../static/img/instagram-logo.png" class="img-logo-social"/>
+                    </a>
                 </div>
-                
-                <!-- Divider -->
-                <hr>
-                
-                <!-- Additional Contact Details Section -->
-                <div class="contact-details">
-                    <p><strong>Mailbox:</strong> {{ a.3 }}</p> <!-- Phone -->
-                    <p><strong>Address:</strong> {{ a.4 }}</p>
-                    <p><strong>City:</strong> {{ a.5 }}</p>
-                    <p><strong>Country:</strong> {{ a.6 }}</p>
-                </div>
-                
-                <!-- Social Media Link -->
-                <a href="https://instagram.com/{{ a.9 }}" target="_blank" class="social-link">
-                    <img src="../static/img/instagram-logo.png" class="img-logo-social"/>
-                </a>
             </div>
-        </div>
-        
-        {% endfor %}
-
+            {% endfor %}
         </main>
     </body>
-
 </html>

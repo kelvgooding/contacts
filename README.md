@@ -6,47 +6,26 @@ Repository: https://github.com/kelvgooding/contacts
 
 Contacts is a web app, which is used to store contact details of Family, Friends, Neighbours etc. The data is stored in an local SQLite3 database, which is created for the first time when the application is launched.
 
-## Setup
+## Running app using Docker
 
-Update Linux OS and ensure the Docker package is installed:
-
-```
-sudo apt update -y
-sudo apt install docker.io
-```
-
-Ensure that the Docker process is running:
+Clone the repository:
 
 ```
-sudo systemctl start docker
-sudo systemctl status docker
+git@github.com:kelvgooding/contacts.git
 ```
 
-Clone the repo from GitHub:
+Navigate to the cloned repository directory
+
+Run the following command to build the Docker image
 
 ```
-mkdir ~/apps
-cd ~/apps
-git clone git@github.com:kelvgooding/contacts.git
+sudo docker build -t contacts .
 ```
 
-To create the Docker image and run the container, run the following command:
+Run the following command to create and start the container:
 
 ```
-cd ~/apps/contacts
-docker-compose -f docker-compose.yml up -d
+sudo docker run -itd -p 3003:3003 --restart=always contacts
 ```
 
-Any files which are required to be peristent, such as sqlite3 database files are kept in:
-
-```
-/var/lib/docker/volumes
-```
-
-## Contribution
-
-| Role      | Name            | Email                        |
-|-----------|-----------------|------------------------------|
-| Design    | Kelvin Gooding  | kelv.gooding@outlook.com     |
-| Developer | Kelvin Gooding  | kelv.gooding@outlook.com     |
-| Support   | Kelvin Gooding  | kelv.gooding@outlook.com     |
+This can now be accessed via web browser - http://localhost:3003

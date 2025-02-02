@@ -31,24 +31,45 @@ button {
     height: 40px;
 }
 
-.picks-searchbar {
+.picks-searchbar, .contacts-searchbar, #dropdown {
     width: 300px;
     height: 38px;
     background-color: #FFFFFF;
     text-align: center;
     font-family: NewFont;
     border: 1px solid #999;
-    border-radius: 2px;
+    border-radius: 15px; /* Rounded corners */
     margin-top: 5px;
 }
 
 header {
     background-color: #4a664f;
     min-width: 100%;
-    height: 75px;
+    height: 100px;
     font-size: 20px;
     color: #000000;
-    align-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    gap: 20px;
+    padding-top: 30px; /* Adjusted for mobile spacing */
+}
+
+header img {
+    display: none; /* Hide logo in header */
+}
+
+.contacts-searchbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center search bar */
+    width: 100%;
+}
+
+.img-logo {
+    width: 70px;
+    height: auto;
 }
 
 footer {
@@ -69,66 +90,6 @@ footer {
     margin-top: 10px;
 }
 
-.img-logo {
-    width: 100px;
-    height: 100px;
-    margin-left: 5px;
-    margin-right: 5px;
-    margin-top: 10px;
-}
-
-@media screen and (max-width: 600px) {
-    .img-main {
-        width: 325px;
-        height: 110px;
-    }
-}
-
-@media screen and (max-width: 900px) {
-    .img-main {
-        width: 325px;
-        height: 110px;
-    }
-}
-
-/* Optional: Responsive design for smaller screens */
-@media screen and (max-width: 600px) {
-    .picks-cards {
-        width: 90%; /* Allow the card to take up more space on smaller screens */
-        max-width: none; /* Remove max-width constraint on small screens */
-        height: auto; /* Allow height to adjust based on content */
-    }
-}
-
-
-.picks-cards {
-    width: 100%; /* Allow the card to scale based on container width */
-    max-width: 400px; /* Set maximum width for larger screens */
-    height: 300px;
-    border-radius: 15px; /* Slightly larger border radius for smoother curves */
-    background-color: #325e36;
-    color: #FFFFFF;
-    margin: 20px auto; /* Center the card horizontally with margin */
-    display: flex;
-    flex-direction: column; /* Stack content vertically */
-    justify-content: space-between; /* Space between content */
-    padding: 15px; /* Padding for internal spacing */
-    box-sizing: border-box; /* Ensure padding doesn't affect total width/height */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add subtle shadow for depth */
-    transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
-}
-
-.contacts-searchbar {
-    width: 300px;
-    height: 38px;
-    background-color: #FFFFFF;
-    text-align: center;
-    font-family: NewFont;
-    border: 1px solid #999;
-    border-radius: 15px; /* Rounded corners */
-    margin-top: 5px;
-}
-
 .group-banner {
     height: 20px;
     width: 100px;
@@ -140,18 +101,6 @@ footer {
     margin-bottom: 20px;
     transition: 1s;
 }
-
-#dropdown {
-    width: 300px; /* Same width as the search bar */
-    height: 38px;
-    background-color: #FFFFFF;
-    text-align: center;
-    font-family: NewFont;
-    border: 1px solid #999;
-    border-radius: 15px; /* Rounded corners */
-    margin-top: 5px;
-}
-
 
 .form-group label {
     display: block;
@@ -166,24 +115,114 @@ footer {
     margin-bottom: 10px;
 }
 
-.contact-info {
+.contact-info, .contact-details {
     font-size: 1em;
     margin-bottom: 15px;
 }
 
-.contact-info p {
-    margin: 5px 0;
-}
-
-.contact-details {
-    font-size: 0.9em;
-    margin-top: 10px;
-}
-
-.contact-details p {
+.contact-info p, .contact-details p {
     margin: 5px 0;
 }
 
 .contact-details strong {
     font-weight: bold;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+    flex-wrap: wrap; /* Allow buttons to stack */
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+    width: 110px;
+}
+
+.btn-add {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.btn-delete {
+    background-color: #D9534F;
+    color: white;
+}
+
+.btn-import-export {
+    background-color: #5BC0DE;
+    color: white;
+}
+
+.btn:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+}
+
+@media screen and (max-width: 600px) {
+    .picks-cards {
+        width: 90%;
+        max-width: none;
+        height: auto;
+    }
+
+    /* Stack the buttons vertically on smaller screens */
+    .button-container {
+        flex-direction: column; /* Stack buttons vertically */
+        align-items: center; /* Center buttons */
+    }
+
+    .picks-searchbar, .contacts-searchbar, #dropdown {
+        width: 80%; /* Make input fields smaller on mobile */
+    }
+
+    /* Adjust the font size and padding for better readability on mobile */
+    .contact-name {
+        font-size: 1.2em;
+    }
+
+    .contact-info, .contact-details {
+        font-size: 0.9em;
+    }
+
+    .contact-info p, .contact-details p {
+        margin: 5px 0;
+    }
+
+    /* Center the search bar and adjust margins */
+    header {
+        padding-top: 20px;
+        height: auto;
+    }
+
+    .contacts-searchbar-container {
+        width: 100%;
+        padding: 0 10px;
+    }
+}
+
+.picks-cards {
+    width: 100%;
+    max-width: 400px;
+    height: 300px;
+    border-radius: 15px;
+    background-color: #325e36;
+    color: #FFFFFF;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
 }

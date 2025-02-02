@@ -9,12 +9,12 @@
     </head>
     <body>
         <header>
-
-            <a href="{{ url_for('index') }}">Home</a> |
-            <a href="{{ url_for('new_contact') }}">Add</a> |
-            <a href="{{ url_for('delete_contact') }}">Delete</a> |
-            <a href="{{ url_for('import_export') }}">Export / Import</a>
-            
+            <a href="{{ url_for('index') }}">
+                <img src="../static/img/logo.png" class="img-logo"/>
+            </a>
+            <div class="contacts-searchbar-container">
+                <input id="searchbar" onkeyup="search_participants()" type="text" name="search" placeholder="SEARCH HERE" class="contacts-searchbar">
+            </div>
         </header>
         <main>
 
