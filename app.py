@@ -2,7 +2,7 @@
 Author: Kelv Gooding
 Created: 2022-06-29
 Updated: 2025-01-17
-Version: 2.x
+Version: 2.1
 """
 
 # Modules
