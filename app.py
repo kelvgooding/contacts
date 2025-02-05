@@ -23,8 +23,8 @@ sql_script = os.path.join(base_path, 'scripts/sql/create_tables.sql')
 
 # SQLite3 Variables
 
-db_check.check_db(f'{base_path}', f'{db_filename}', f'{sql_script}')
-conn = db_check.sqlite3.connect(os.path.join(base_path, db_filename), check_same_thread=False)
+db_check.check_db(f'/data', f'{db_filename}', f'{sql_script}')
+conn = db_check.sqlite3.connect(os.path.join('/data', db_filename), check_same_thread=False)
 c = conn.cursor()
 
 # Flask Variables
@@ -34,8 +34,8 @@ app.secret_key = os.urandom(32)
 
 # Generate import and export directories
 
-dir_check.check_dir('/mnt/docker/contacts', 'export')
-dir_check.check_dir('/mnt/docker/contacts', 'import')
+dir_check.check_dir('/data', 'export')
+dir_check.check_dir('/data', 'import')
 
 @app.route("/", methods=["POST", "GET"])
 def index():
@@ -94,7 +94,7 @@ def delete_contact():
 def import_export():
 
     if 'export_btn' in request.form and request.method == "POST":
-        export_data.export_data('./', 'export', 'contacts.db', 'contacts')
+        export_data.export_data('/data', 'export', 'contacts.db', 'contacts')
         flash('Export has been completed successfully!')
 
     if 'import_btn' in request.form and request.method == "POST":
