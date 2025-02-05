@@ -34,8 +34,8 @@ app.secret_key = os.urandom(32)
 
 # Generate import and export directories
 
-dir_check.check_dir(base_path, 'export')
-dir_check.check_dir(base_path, 'import')
+dir_check.check_dir('/mnt/docker/contacts', 'export')
+dir_check.check_dir('/mnt/docker/contacts', 'import')
 
 @app.route("/", methods=["POST", "GET"])
 def index():
