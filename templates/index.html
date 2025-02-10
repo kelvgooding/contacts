@@ -30,19 +30,22 @@
                 </div>
             </div>
         
-            <div class="form-group">
-                <label for="dropdown">CATEGORY</label>
-                <select name="dropdownbox" id="dropdown" onchange="submitDropdownForm()">
-                    <option value="-">-</option>
-                    <option value="Family">Family</option>
-                    <option value="Friends">Friends</option>
-                    <option value="Neighbours">Neighbours</option>
-                    <option value="Work">Work</option>
-                    <option value="Company">Company</option>
-                    <option value="Other">Other</option>
-                    <option value="Archived">Archived</option>
-                </select>
-            </div>
+            <form id="dropdownForm" method="GET" action="{{ url_for('index') }}">
+                <div class="form-group">
+                    <label for="dropdown">CATEGORY</label>
+                    <select name="category" id="dropdown" onchange="submitDropdownForm()">
+                        <option value="-">-</option>
+                        <option value="Family">Family</option>
+                        <option value="Friends">Friends</option>
+                        <option value="Neighbours">Neighbours</option>
+                        <option value="Work">Work</option>
+                        <option value="Company">Company</option>
+                        <option value="Other">Other</option>
+                        <option value="Archived">Archived</option>
+                    </select>
+                </div>
+            </form>
+           
             
             <p>{{ contacts_count.0.0 }} Contact(s) found:</p>
 
