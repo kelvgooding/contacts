@@ -25,7 +25,7 @@ sudo docker build -t contacts .
 Run the following command to create and start the container:
 
 ```
-sudo docker run -itd -p 3003:3003 --restart=always contacts
+sudo docker run -itd -p 3003:3003 -v /mnt/volumes/contacts:/data --name contacts contacts
 ```
 
 This can now be accessed via web browser - http://localhost:3003
