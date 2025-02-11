@@ -55,9 +55,9 @@ def index():
     # Select all data from the contact table using the filter dropdown value in the WHERE statement.
 
     if request.method == "POST":
-        c.execute(f'SELECT * FROM contacts WHERE GRP=("{(request.form.get("dropdownbox"))}") ORDER BY FIRST_NAME ASC;')
+        c.execute(f'SELECT * FROM contacts WHERE GRP=("{(request.form.get("category"))}") ORDER BY FIRST_NAME ASC;')
         contacts_data = c.fetchall()
-        c.execute(f'SELECT COUNT(*) FROM contacts WHERE GRP=("{(request.form.get("dropdownbox"))}") ORDER BY FIRST_NAME ASC;')
+        c.execute(f'SELECT COUNT(*) FROM contacts WHERE GRP=("{(request.form.get("category"))}") ORDER BY FIRST_NAME ASC;')
         contacts_count = c.fetchall()
         return render_template('index.html', headings=headings, contacts_data=contacts_data, contacts_count=contacts_count)
 
