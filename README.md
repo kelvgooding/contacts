@@ -11,7 +11,7 @@ Clone the repository:
 ```
 mkdir ~/repos
 cd ~/repos
-git@github.com:kelvgooding/contacts.git
+git clone git@github.com:kelvgooding/contacts.git
 ```
 
 Run the following command to build the Docker image
