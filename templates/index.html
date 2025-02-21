@@ -26,11 +26,10 @@
                 <div class="button-container">
                     <a href="{{ url_for('new_contact') }}" class="btn btn-add">Add</a>
                     <a href="{{ url_for('delete_contact') }}" class="btn btn-delete">Delete</a>
-                    <a href="{{ url_for('import_export') }}" class="btn btn-import-export">Import / Export</a>
                 </div>
             </div>
         
-            <form id="dropdownForm" method="GET" action="{{ url_for('index') }}">
+            <form id="dropdownForm" method="POST" action="{{ url_for('index') }}">
                 <div class="form-group">
                     <label for="dropdown">CATEGORY</label>
                     <select name="category" id="dropdown" onchange="submitDropdownForm()">
@@ -46,7 +45,7 @@
                 </div>
             </form>
            
-            
+            <h3>Category: {{ category_name }}</h3>
             <p>{{ contacts_count.0.0 }} Contact(s) found:</p>
 
             {% for a in contacts_data %}

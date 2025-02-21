@@ -1,17 +1,14 @@
 """
 Author: Kelv Gooding
 Created: 2022-06-29
-Updated: 2025-01-17
-Version: 2.1
+Updated: 2025-02-21
+Version: 2.2
 """
 
 # Modules
 
-from flask import Flask, render_template, request, flash
+from flask import Flask, render_template, request
 from modules import db_check
-from modules import import_data
-from modules import export_data
-from modules import dir_check
 import os
 
 # Variables
@@ -32,11 +29,6 @@ c = conn.cursor()
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
 
-# Generate import and export directories
-
-dir_check.check_dir('/data', 'export')
-dir_check.check_dir('/data', 'import')
-
 @app.route("/", methods=["POST", "GET"])
 def index():
 
@@ -55,11 +47,12 @@ def index():
     # Select all data from the contact table using the filter dropdown value in the WHERE statement.
 
     if request.method == "POST":
+        category_name = request.form.get("category")
         c.execute(f'SELECT * FROM contacts WHERE GRP=("{(request.form.get("category"))}") ORDER BY FIRST_NAME ASC;')
         contacts_data = c.fetchall()
         c.execute(f'SELECT COUNT(*) FROM contacts WHERE GRP=("{(request.form.get("category"))}") ORDER BY FIRST_NAME ASC;')
         contacts_count = c.fetchall()
-        return render_template('index.html', headings=headings, contacts_data=contacts_data, contacts_count=contacts_count)
+        return render_template('index.html', headings=headings, contacts_data=contacts_data, contacts_count=contacts_count, category_name=category_name)
 
     return render_template('index.html', headings=headings, contacts_data=contacts_data, contacts_count=contacts_count)
 
@@ -89,20 +82,6 @@ def delete_contact():
         conn.commit()
 
     return render_template('delete_contact.html', all_contacts=all_contacts)
-
-@app.route("/import_export", methods=["POST", "GET"])
-def import_export():
-
-    if 'export_btn' in request.form and request.method == "POST":
-        export_data.export_data('/data', 'export', 'contacts.db', 'contacts')
-        flash('Export has been completed successfully!')
-
-    if 'import_btn' in request.form and request.method == "POST":
-        import_file = (os.popen('ls -t import | head -n1').read().strip())
-        import_data.import_data(f'contacts.db', os.path.join('import/', str(import_file)), './', f'sql/create_tables.sql', 'contacts')
-        flash('Import has been completed successfully!')
-
-    return render_template('import_export.html')
 
 if __name__ == "__main__":
     app.debug = True
