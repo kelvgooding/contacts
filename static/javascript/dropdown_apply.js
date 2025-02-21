@@ -1,3 +1,3 @@
 function submitDropdownForm() {
-    document.querySelector('form').submit();
+    document.querySelector('dropdownForm').submit();
 }
